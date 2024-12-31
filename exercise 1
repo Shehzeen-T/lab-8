@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+// Recursive function to compute binomial coefficient
+int binomialCoefficient(int n, int m) {
+ if (m == 0 || n == m) // Base cases
+ return 1;
+ return binomialCoefficient(n - 1, m - 1) + binomialCoefficient(n - 1, m); // Recursive relation
+}
+int main() {
+ int n, m;
+ // Input n and m
+ cout << "Enter values for n and m: ";
+ cin >> n >> m;
+ if (m > n || n < 0 || m < 0) {
+ cout << "Invalid input. Ensure that 0 <= m <= n." << endl;
+ return 1;
+ }
+ // Calculate and display the binomial coefficient
+ cout << "Binomial Coefficient C(" << n << ", " << m << ") = " << binomialCoefficient(n, m) << endl;
+ return 0;
+}
