@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+// Node structure
+struct Node {
+ int data;
+ Node* next;
+};
+// Recursive function to reverse the list
+void reverse(Node** head) {
+ // Base case: empty list or end of the list
+ if (*head == nullptr || (*head)->next == nullptr)
+ return;
+ // Recursive step: reverse the rest of the list
+ Node* rest = (*head)->next;
+ reverse(&rest);
+ // Reversing the current node
+ (*head)->next->next = *head;
+ *head)->next = nullptr;
+ // Update head pointer
+ *head = rest;
+}
+// Function to print the list
+void printList(Node* head) {
+ while (head != nullptr) {
+ cout << head->data << " ";
+ head = head->next;
+ }
+ cout << endl;
+}
+// Helper function to push a new node to the front of the list
+void push(Node** head, int data) {
+ Node* newNode = new Node();
+ newNode->data = data;
+ newNode->next = *head;
+ *head = newNode;
+}
+int main() {
+ Node* head = nullptr;
+ // Creating the list: 1 -> 2 -> 3 -> 4
+ push(&head, 4);
+ push(&head, 3);
+ push(&head, 2);
+ push(&head, 1);
+ cout << "Original List: ";
+ printList(head);
+ reverse(&head);
+ cout << "Reversed List: ";
+ printList(head);
+ return 0;
+}
