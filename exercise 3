@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int sum(int a[], int size) {
+ if (size == 0)
+ return 0; // Base case: no elements, sum is 0
+ return a[size - 1] + sum(a, size - 1); // Recursive step
+}
+int main() {
+ int arr[] = {1, 2, 3, 4};
+ int result = sum(arr, 4);
+ cout << result << endl; // Should print 10
+ return 0;
+}
